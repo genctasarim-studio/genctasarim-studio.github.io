@@ -192,20 +192,51 @@
     border-color: var(--ana-renk);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-/* Gece Modu Buton Stili */
+
+/* --- Yüzen Buton Temel Stili --- */
 .theme-btn {
-    background: #f0f2f5;
+    position: fixed;
+    top: 85px;
+    right: 20px;
+    z-index: 999;
+    background: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease;
-    border: 1px solid #ddd;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 1.2rem;
 }
 
-.theme-btn .icon-moon { display: none; }
+/* --- İKON MANTIĞI (İstediğin Gibi: Açık Modda Güneş, Koyu Modda Ay) --- */
+
+/* 1. Normal (Açık) Modda: Güneşi göster, Ayı gizle */
+.theme-btn .icon-sun {
+    display: inline;
+}
+.theme-btn .icon-moon {
+    display: none;
+}
+
+/* 2. Karanlık Modda (body.dark-mode): Ayı göster, Güneşi gizle */
+body.dark-mode .theme-btn {
+    background: #333;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.05);
+}
+
+body.dark-mode .theme-btn .icon-sun {
+    display: none;
+}
+
+body.dark-mode .theme-btn .icon-moon {
+    display: inline;
+}
+
 
 /* --- KARANLIK MOD KESİN ÇÖZÜM PAKETİ --- */
 body.dark-mode {
@@ -316,14 +347,18 @@ body.dark-mode .faq-answer p { color: #bbb !important; }
 
     </style>
 </head>
-<body oncontextmenu="return false;"> <nav style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+<body oncontextmenu="return false;"> 
+    <button id="theme-toggle" class="theme-btn">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+    </button>
+    
+    
+    <nav style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
     <div style="display: flex; align-items: center; gap: 15px;">
         <div class="logo" style="font-weight: 700; color: var(--ana-renk); font-size: 1.2rem;">GENÇ TASARIM STUDİO</div>
         
-        <button id="theme-toggle" class="theme-btn">
-            <span class="icon-sun">☀️</span>
-            <span class="icon-moon">🌙</span>
-        </button>
+        
     </div>
 
     <div style="font-size: 0.8rem; font-weight: 600; color: var(--ana-renk);">Elden Ödeme • Yerel Destek</div>
@@ -387,12 +422,14 @@ body.dark-mode .faq-answer p { color: #bbb !important; }
     <a href="https://geleneksel-tostcu.github.io/" target="_blank" class="ref-btn">Siteyi İncele →</a>
 </div>
             <div class="ref-card">
-                <h4>Merkez Pide Salonu</h4>
+                <h4>SELÂM Danışmanlık</h4>
                 <span>● SİTE YAYINDA</span>
+                <a href="https://selam-danismanlik.github.io/" target="_blank" class="ref-btn">Siteyi İncele →</a>
             </div>
             <div class="ref-card">
-                <h4>Huzur Tesisat</h4>
+                <h4>falan filan</h4>
                 <span>● SİTE YAYINDA</span>
+                <a href="https://selam-danismanlik.github.io/" target="_blank" class="ref-btn">Siteyi İncele →</a>
             </div>
         </div>
     </section>
@@ -509,33 +546,24 @@ body.dark-mode .faq-answer p { color: #bbb !important; }
             modal.style.display = "none";
         }
     }
-    // Gece Modu Fonksiyonu
+// TEK VE TEMİZ GECE MODU KODU
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    
-    // Tercihi hatırla (Sayfa yenilense de bozulmaz)
-    const isDark = body.classList.contains('dark-mode');
-    localStorage.setItem('darkItem', isDark);
-});
-
-// Sayfa açıldığında eski tercihi kontrol et
-if (localStorage.getItem('darkItem') === 'true') {
+// Sayfa yüklendiğinde hafızadaki modu kontrol et
+if (localStorage.getItem('darkMode') === 'true') {
     body.classList.add('dark-mode');
 }
-// SSS Açılır Kapanır Fonksiyonu
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement;
-        faqItem.classList.toggle('active');
-        
-        // Diğer açık olanları kapatmak istersen (isteğe bağlı):
-        document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem) item.classList.remove('active');
-        });
-    });
+
+themeToggle.addEventListener('click', (e) => {
+    e.preventDefault(); // Sayfanın zıplamasını engeller
+    body.classList.toggle('dark-mode');
+    
+    // Seçimi kaydet
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    
+    console.log("Mod değiştirildi: " + isDark); // Test için konsola yazar
 });
 </script>
 </body>
