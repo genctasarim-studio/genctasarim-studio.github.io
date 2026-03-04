@@ -192,12 +192,142 @@
     border-color: var(--ana-renk);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+/* Gece Modu Buton Stili */
+.theme-btn {
+    background: #f0f2f5;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+.theme-btn .icon-moon { display: none; }
+
+/* --- KARANLIK MOD KESİN ÇÖZÜM PAKETİ --- */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Tüm Beyaz Kalan Alanları (Şeritler Dahil) Koyu Yap */
+body.dark-mode nav, 
+body.dark-mode .hero, 
+body.dark-mode .card, 
+body.dark-mode .ref-card, 
+body.dark-mode .referanslar,
+body.dark-mode .surec,
+body.dark-mode .step, /* Görseldeki beyaz şeritleri burası düzeltir */
+body.dark-mode .modal-content {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border-color: #333 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+}
+
+/* Şeritlerin İçindeki Yazıları Okunur Yap */
+body.dark-mode .step {
+    color: #ffffff !important;
+}
+
+body.dark-mode .step strong {
+    color: var(--ana-renk) !important; /* Adım numaraları mavi kalsın, dikkat çeksin */
+}
+
+/* Başlıkların Görünürlüğünü Sağla */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3,
+body.dark-mode .logo {
+    color: #ffffff !important;
+}
+
+/* Alt Metinlerin Rengini Yumuşat */
+body.dark-mode .hero p, 
+body.dark-mode .card-body p,
+body.dark-mode .referanslar h2 {
+    color: #bbb !important;
+}
+
+/* Buton İkon Geçişleri */
+body.dark-mode .theme-btn .icon-sun { display: none; }
+body.dark-mode .theme-btn .icon-moon { display: inline; }
+
+/* Yumuşak Geçiş Efekti */
+body, nav, section, div, h1, h2, h3, p, .step {
+    transition: background-color 0.4s ease, color 0.4s ease !important;
+}
+/* SSS Genel Stil */
+.sss { padding: 40px 5%; background: #f9f9f9; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { margin-bottom: 10px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; background: white; }
+
+.faq-question {
+    width: 100%; padding: 15px 20px; text-align: left; background: white; border: none;
+    font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    transition: 0.3s; color: var(--koyu-renk);
+}
+
+.faq-question:hover { background: #f0f7ff; }
+.faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: white; }
+.faq-answer p { padding-bottom: 15px; color: #666; font-size: 0.9rem; margin-top: 10px; }
+
+/* Ok işareti animasyonu */
+.arrow { transition: transform 0.3s; font-size: 0.8rem; color: var(--ana-renk); }
+.faq-item.active .arrow { transform: rotate(180deg); }
+.faq-item.active .faq-answer { max-height: 200px; }
+
+/* SSS Karanlık Mod Uyumu */
+body.dark-mode .sss { background: #121212 !important; }
+body.dark-mode .faq-item, 
+body.dark-mode .faq-question, 
+body.dark-mode .faq-answer {
+    background: #1e1e1e !important;
+    color: white !important;
+    border-color: #333 !important;
+}
+body.dark-mode .faq-answer p { color: #bbb !important; }
+
+/* Sayfa Yüklenme Animasyonu */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Kartlara ve Bölümlere Uygula */
+.card, .step, .ref-card, .faq-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Başlangıçta gizli */
+}
+
+/* Sırayla gelmeleri için gecikme ekleyelim */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.3s; }
+.card:nth-child(3) { animation-delay: 0.5s; }
+
     </style>
 </head>
-<body oncontextmenu="return false;"> <nav>
-        <div class="logo">KOD & TASARIM</div>
-        <div style="font-size: 0.8rem; font-weight: 600; color: var(--ana-renk);">Elden Ödeme • Yerel Destek</div>
-    </nav>
+<body oncontextmenu="return false;"> <nav style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="logo" style="font-weight: 700; color: var(--ana-renk); font-size: 1.2rem;">GENÇ TASARIM STUDİO</div>
+        
+        <button id="theme-toggle" class="theme-btn">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+    </div>
+
+    <div style="font-size: 0.8rem; font-weight: 600; color: var(--ana-renk);">Elden Ödeme • Yerel Destek</div>
+</nav>
 
     <header class="hero">
         <h1>İşletmenizi İnternete Taşıyalım</h1>
@@ -284,9 +414,44 @@
         <span>WhatsApp Sipariş Hattı</span>
     </a>
 
-    <footer style="text-align: center; padding: 40px; color: #777; font-size: 0.8rem;">
-        &copy; 2026 Web Tasarımı 
-    </footer>
+    <section class="sss">
+    <h2 style="text-align: center;">Merak Edilenler</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-question">Yıllık ek bir ücret ödeyecek miyim? <span class="arrow">▼</span></button>
+            <div class="faq-answer">
+                <p>Hayır, elden teslim ettiğimiz sistemde yıllık yenileme ücreti yoktur. Sadece alan adı ve hosting süreniz dolduğunda (genelde yılda 1) standart yenileme bedeli ödersiniz.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Sitem Google'da görünür mü? <span class="arrow">▼</span></button>
+            <div class="faq-answer">
+                <p>Evet! Tüm tasarımlarımız SEO uyumludur. İşletmenizin adı aratıldığında Google'da çıkması için gerekli teknik altyapıyı kurup teslim ediyoruz.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Teknik bir sorun çıkarsa ne yapacağım? <span class="arrow">▼</span></button>
+            <div class="faq-answer">
+                <p>Yerel destek sözümüzün arkasındayız. Bir sorun yaşarsanız veya bir şeyi değiştirmek isterseniz WhatsApp hattımızdan bize ulaşabilirsiniz, hızlıca yardımcı oluyoruz.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <button class="faq-question">Ödemeyi ne zaman yapıyorum? <span class="arrow">▼</span></button>
+            <div class="faq-answer">
+                <p>Sitenizi 2 gün içinde hazırlayıp yanınıza geliyoruz. Siz kontrol edip "Tamam, istediğim gibi olmuş" dediğinizde ödemeyi elden nakit olarak yapabiliyorsunuz.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer style="text-align: center; padding: 40px; color: #777; font-size: 0.8rem; border-top: 1px solid #eee;">
+    <div style="margin-bottom: 10px;">
+    </div>
+    <p>&copy; 2026 Genç Tasarım Studio. Tüm Hakları Saklıdır.</p>
+</footer>
 <div id="demoModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -344,6 +509,34 @@
             modal.style.display = "none";
         }
     }
+    // Gece Modu Fonksiyonu
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    // Tercihi hatırla (Sayfa yenilense de bozulmaz)
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('darkItem', isDark);
+});
+
+// Sayfa açıldığında eski tercihi kontrol et
+if (localStorage.getItem('darkItem') === 'true') {
+    body.classList.add('dark-mode');
+}
+// SSS Açılır Kapanır Fonksiyonu
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        faqItem.classList.toggle('active');
+        
+        // Diğer açık olanları kapatmak istersen (isteğe bağlı):
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) item.classList.remove('active');
+        });
+    });
+});
 </script>
 </body>
 </html>
