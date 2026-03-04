@@ -287,40 +287,105 @@ body.dark-mode .referanslar h2 {
 body.dark-mode .theme-btn .icon-sun { display: none; }
 body.dark-mode .theme-btn .icon-moon { display: inline; }
 
-/* Yumuşak Geçiş Efekti */
-body, nav, section, div, h1, h2, h3, p, .step {
-    transition: background-color 0.4s ease, color 0.4s ease !important;
-}
+
 /* SSS Genel Stil */
-.sss { padding: 40px 5%; background: #f9f9f9; }
+.sss { padding: 40px 5%; background: #f9f9f9; transition: background 0.4s; }
 .faq-container { max-width: 800px; margin: 0 auto; }
-.faq-item { margin-bottom: 10px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; background: white; }
 
+.faq-item { 
+    margin-bottom: 12px; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    border: 1px solid #ddd; 
+    background: white; 
+    transition: all 0.3s ease;
+}
+
+/* Soru Kısmı */
 .faq-question {
-    width: 100%; padding: 15px 20px; text-align: left; background: white; border: none;
-    font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-    transition: 0.3s; color: var(--koyu-renk);
+    width: 100%; 
+    padding: 18px 25px; 
+    text-align: left; 
+    background: white; 
+    border: none;
+    font-size: 1rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    color: var(--koyu-renk);
+    transition: background 0.3s;
 }
 
-.faq-question:hover { background: #f0f7ff; }
-.faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: white; }
-.faq-answer p { padding-bottom: 15px; color: #666; font-size: 0.9rem; margin-top: 10px; }
+.faq-question:hover { background: #f8fbff; }
 
-/* Ok işareti animasyonu */
-.arrow { transition: transform 0.3s; font-size: 0.8rem; color: var(--ana-renk); }
-.faq-item.active .arrow { transform: rotate(180deg); }
-.faq-item.active .faq-answer { max-height: 200px; }
+/* Cevap Alanı (Kritik Bölge) */
+.faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease, opacity 0.4s ease;
+    opacity: 0;
+    padding: 0 25px;
+    overflow: hidden;
+}
 
-/* SSS Karanlık Mod Uyumu */
+.faq-item.active .faq-answer {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    padding: 10px 25px 20px 25px;
+}
+
+.faq-answer p {
+    min-height: 0;
+    margin: 0;
+    line-height: 1.6;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Ok İşareti */
+.arrow { 
+    display: inline-block;
+    font-style: normal;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    color: var(--ana-renk);
+}
+
+.faq-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* --- KARANLIK MOD AYARLARI --- */
 body.dark-mode .sss { background: #121212 !important; }
-body.dark-mode .faq-item, 
-body.dark-mode .faq-question, 
-body.dark-mode .faq-answer {
-    background: #1e1e1e !important;
-    color: white !important;
-    border-color: #333 !important;
+
+body.dark-mode .faq-item { 
+    background-color: #1e1e1e !important; 
+    border-color: #333 !important; 
 }
-body.dark-mode .faq-answer p { color: #bbb !important; }
+
+body.dark-mode .faq-question { 
+    background-color: #1e1e1e !important; 
+    color: #ffffff !important; 
+}
+
+body.dark-mode .faq-answer { 
+    background-color: #1e1e1e !important; 
+}
+
+/* Karanlık modda yazı netliği (Solukluğu giderdik) */
+body.dark-mode .faq-answer p { 
+    color: #e0e0e0 !important; 
+}
+
+body.dark-mode .faq-question:hover { background: #252525 !important; }
+
+body.dark-mode nav, 
+body.dark-mode footer {
+    background-color: #121212 !important;
+    border-color: #333 !important;
+    color: white !important;
+}
 
 /* Sayfa Yüklenme Animasyonu */
 @keyframes fadeInUp {
@@ -341,9 +406,9 @@ body.dark-mode .faq-answer p { color: #bbb !important; }
 }
 
 /* Sırayla gelmeleri için gecikme ekleyelim */
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.3s; }
-.card:nth-child(3) { animation-delay: 0.5s; }
+.card:nth-of-type(1) { animation-delay: 0.1s; }
+.card:nth-of-type(2) { animation-delay: 0.3s; }
+.card:nth-of-type(3) { animation-delay: 0.5s; }
 
     </style>
 </head>
@@ -564,6 +629,17 @@ themeToggle.addEventListener('click', (e) => {
     localStorage.setItem('darkMode', isDark);
     
     console.log("Mod değiştirildi: " + isDark); // Test için konsola yazar
+});
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        // Diğerlerini kapat
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) item.classList.remove('active');
+        });
+        // Aktif yap
+        faqItem.classList.toggle('active');
+    });
 });
 </script>
 </body>
