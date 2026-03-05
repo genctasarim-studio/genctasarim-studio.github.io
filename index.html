@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Tasarım Çözümleri | [Senin Adın]</title>
+    
+    <title>Genç Tasarım Studio | Esnaf ve Küçük İşletme Web Çözümleri</title>
+    
+    <meta name="description" content="Genç Tasarım Studio ile işletmenizi internete taşıyın. Restoran, berber ve usta siteleri için ekonomik, hızlı ve modern web tasarım çözümleri.">
+    
+    <meta name="keywords" content="Genç Tasarım Studio, web tasarım, uygun fiyatlı web sitesi, esnaf sitesi, restoran sitesi kurulumu, kurumsal web tasarım">
+    
     <link rel="icon" type="image/png" href="images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -410,6 +416,84 @@ body.dark-mode footer {
 .card:nth-of-type(2) { animation-delay: 0.3s; }
 .card:nth-of-type(3) { animation-delay: 0.5s; }
 
+.main-nav {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: white; 
+    padding: 15px 5%; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    position: sticky; 
+    top: 0; 
+    z-index: 100;
+}
+
+.logo { 
+    font-weight: 700; 
+    color: var(--ana-renk); 
+    font-size: 1.2rem; 
+    margin: 0; /* H1'den gelen boşluğu sıfırlar */
+}
+
+.nav-right { 
+    font-size: 0.8rem; 
+    font-weight: 600; 
+    color: var(--ana-renk); 
+}
+
+/* Karanlık Mod Desteği */
+body.dark-mode .main-nav {
+    background: #1e1e1e !important;
+    border-bottom: 1px solid #333;
+}
+/* Footer Modernizasyon */
+.site-footer {
+    text-align: center; 
+    padding: 50px 5%; 
+    color: #777; 
+    font-size: 0.9rem; 
+    border-top: 1px solid #eee;
+    background: #fff;
+    transition: all 0.4s ease;
+}
+
+.site-footer h3 {
+    color: var(--ana-renk);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.footer-content p {
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+}
+
+.footer-location {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--koyu-renk);
+}
+
+.footer-bottom {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 20px;
+    font-size: 0.75rem;
+}
+
+/* Karanlık Mod Uyumu */
+body.dark-mode .site-footer {
+    background: #121212 !important;
+    border-top-color: #333;
+    color: #bbb;
+}
+
+body.dark-mode .footer-bottom {
+    border-top-color: #222;
+}
+
+body.dark-mode .footer-location {
+    color: #eee;
+}
     </style>
 </head>
 <body oncontextmenu="return false;"> 
@@ -419,19 +503,19 @@ body.dark-mode footer {
     </button>
     
     
-    <nav style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <div class="logo" style="font-weight: 700; color: var(--ana-renk); font-size: 1.2rem;">GENÇ TASARIM STUDİO</div>
-        
-        
+    <nav class="main-nav">
+    <div class="nav-left">
+        <h1 class="logo">GENÇ TASARIM STUDIO</h1>
     </div>
 
-    <div style="font-size: 0.8rem; font-weight: 600; color: var(--ana-renk);">Elden Ödeme • Yerel Destek</div>
+    <div class="nav-right">
+        <span>Elden Ödeme • Yerel Destek</span>
+    </div>
 </nav>
 
     <header class="hero">
-        <h1>İşletmenizi İnternete Taşıyalım</h1>
-        <p>Esnaflarımıza özel, hızlı ve ekonomik web sitesi çözümleri. Aşağıdaki modellerden birini seçin, 2 günde yayına alalım.</p>
+        <h1>Genç Tasarım Studio</h1>
+        <p>İşletmenizi İnternete Taşıyalım: Esnafa Özel Hızlı ve Ekonomik Çözümler</p>
     </header>
 
     <h2 style="text-align: center;">Hazır Site Modellerimiz</h2>
@@ -478,7 +562,7 @@ body.dark-mode footer {
     </div>
 
     <section class="referanslar">
-        <h2 style="text-align: center;">Bize Güvenen Esnaflarımız</h2>
+        <h2 style="text-align: center;">Bize Güvenen Müşterilerimiz</h2>
         <div class="ref-grid">
             <div class="ref-card">
     <h4>Geleneksel Tostçu</h4>
@@ -489,14 +573,10 @@ body.dark-mode footer {
             <div class="ref-card">
                 <h4>SELÂM Danışmanlık</h4>
                 <span>● SİTE YAYINDA</span>
+                <br>
                 <a href="https://selam-danismanlik.github.io/" target="_blank" class="ref-btn">Siteyi İncele →</a>
             </div>
-            <div class="ref-card">
-                <h4>falan filan</h4>
-                <span>● SİTE YAYINDA</span>
-                <a href="https://selam-danismanlik.github.io/" target="_blank" class="ref-btn">Siteyi İncele →</a>
-            </div>
-        </div>
+            
     </section>
 
     <section class="surec">
@@ -549,10 +629,15 @@ body.dark-mode footer {
     </div>
 </section>
 
-    <footer style="text-align: center; padding: 40px; color: #777; font-size: 0.8rem; border-top: 1px solid #eee;">
-    <div style="margin-bottom: 10px;">
+    <footer class="site-footer">
+    <div class="footer-content">
+        <h3>Genç Tasarım Studio</h3>
+        <p>Esnaf ve Küçük İşletmeler İçin Modern Web Çözümleri</p>
+        <div class="footer-location">📍 İstanbul, Türkiye • Yerel Destek</div>
     </div>
-    <p>&copy; 2026 Genç Tasarım Studio. Tüm Hakları Saklıdır.</p>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Genç Tasarım Studio. Tüm Hakları Saklıdır.</p>
+    </div>
 </footer>
 <div id="demoModal" class="modal">
     <div class="modal-content">
