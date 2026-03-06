@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temizlik Şirketi Modelleri | Genç Tasarım Studio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Temizlik ve hijyeni simgeleyen ferah turkuaz/mavi tonları */
+            --ana-renk: #00A8CC; 
+            --ana-renk-koyu: #00829e;
+            --koyu-renk: #2c3e50;
+            --acik-gri: #f4f9fa; /* Hafif ferah bir arka plan */
+            --basari: #25d366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--acik-gri); 
+            color: var(--koyu-renk);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Üst Menü */
+        .top-bar {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .btn-back { text-decoration: none; color: var(--koyu-renk); font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+        .studio-name { font-weight: 700; color: #007bff; letter-spacing: -0.5px; }
+
+        /* Ana İçerik */
+        .main-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .header-text { text-align: center; margin-bottom: 40px; }
+        .header-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--ana-renk), var(--ana-renk-koyu));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-text p { color: #555; font-size: 1.05rem; }
+
+        /* --- MODEL AKORDEON YAPISI --- */
+        .model-wrapper {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+
+        .model-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            transition: background 0.3s;
+        }
+        .model-header:hover { background: #fafbfc; }
+        
+        .model-title-area { display: flex; align-items: center; gap: 15px; }
+        .model-icon { font-size: 2rem; background: rgba(0, 168, 204, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+        .model-title-area h2 { font-size: 1.2rem; color: var(--koyu-renk); margin: 0; }
+        .model-title-area p { font-size: 0.85rem; color: #777; margin: 0; }
+        
+        .arrow-icon { font-size: 1.2rem; color: var(--ana-renk); transition: transform 0.3s; }
+        
+        /* Model Detayları (Başlangıçta Gizli) */
+        .model-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            background: #fdfdfd;
+            border-top: 1px solid transparent;
+        }
+        .model-wrapper.active .model-details {
+            max-height: 1000px; 
+            padding: 25px;
+            border-top-color: #eaeaea;
+        }
+        .model-wrapper.active .arrow-icon { transform: rotate(180deg); }
+
+        /* Etkileşim Kutucukları */
+        .action-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .action-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            cursor: pointer;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--koyu-renk);
+        }
+        .action-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--ana-renk);
+            box-shadow: 0 10px 20px rgba(0, 168, 204, 0.1);
+        }
+        .action-box .icon { font-size: 2rem; margin-bottom: 10px; }
+        .action-box h3 { font-size: 1rem; margin-bottom: 5px; color: var(--koyu-renk); }
+
+        /* Bilgi Paneli */
+        .info-panel {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #eaeaea;
+            animation: fadeIn 0.4s ease;
+        }
+        .info-panel.active { display: block; }
+        
+        .feature-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee; }
+        .feature-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .feature-item .f-check { color: var(--ana-renk); font-weight: bold; }
+        .feature-item span { font-size: 0.95rem; color: #555; }
+
+        /* Satın Alma Butonu */
+        .cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--basari);
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+
+        /* Animasyon */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Karanlık Mod */
+        body.dark-mode { background-color: #121418; color: #e4e6eb; }
+        body.dark-mode .top-bar { background-color: #1a1d24; border-bottom: 1px solid #2a2e35; }
+        body.dark-mode .btn-back { color: #e4e6eb; }
+        body.dark-mode .header-text p { color: #a0a5b0; }
+        body.dark-mode .model-wrapper, body.dark-mode .model-header, body.dark-mode .model-details, body.dark-mode .action-box, body.dark-mode .info-panel { background: #1a1d24; border-color: #2a2e35; }
+        body.dark-mode .model-header:hover { background: #222730; }
+        body.dark-mode .model-title-area h2, body.dark-mode .action-box h3 { color: #fff; }
+        body.dark-mode .model-icon { background: #2a2e35; }
+        body.dark-mode .feature-item span { color: #a0a5b0; }
+        body.dark-mode .feature-item { border-bottom-color: #2a2e35; }
+
+        @media (max-width: 600px) {
+            .action-boxes { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="top-bar">
+        <a href="../index.html?modal=Usta" class="btn-back"><span>←</span> Geri Dön</a>
+        <div class="studio-name">Genç Tasarım Studio</div>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="header-text">
+            <h1>Temizlik Şirketi Modelleri</h1>
+            <p>Hijyeni ve güveni yansıtan, ferah ve profesyonel vitrin tasarımları.</p>
+        </div>
+
+        <div class="model-wrapper" id="temizlik1-wrapper">
+            
+            <div class="model-header" onclick="toggleModel('temizlik1-wrapper')">
+                <div class="model-title-area">
+                    <div class="model-icon">🧼</div>
+                    <div>
+                        <h2>Profesyonel Temizlik Hizmeti</h2>
+                        <p>Ev, ofis, villa ve inşaat sonrası temizlik firmaları için randevu odaklı tasarım.</p>
+                    </div>
+                </div>
+                <div class="arrow-icon">▼</div>
+            </div>
+
+            <div class="model-details">
+                
+                <div class="action-boxes">
+                    <a href="#" target="_blank" class="action-box">
+                        <div class="icon">🌐</div>
+                        <h3>Siteye Git</h3>
+                    </a>
+
+                    <div class="action-box" onclick="toggleInfo('temizlik1-info')">
+                        <div class="icon">💡</div>
+                        <h3>Model Özellikleri (Bilgi)</h3>
+                    </div>
+                </div>
+
+                <div class="info-panel" id="temizlik1-info">
+                    <div class="feature-item"><span class="f-check">✓</span> <span>Ayrıntılı Hizmet Paketleri (Ev, Ofis, Dış Cephe vb.)</span></div>
+                    <div class="feature-item"><span class="f-check">✓</span> <span>Hızlı Fiyat Teklifi ve WhatsApp Randevu Butonları</span></div>
+                    <div class="feature-item"><span class="f-check">✓</span> <span>Müşteriye Güven Veren Öncesi/Sonrası (Before/After) Galerisi</span></div>
+                    <div class="feature-item"><span class="f-check">✓</span> <span>Müşteri Yorumları ve Hizmet Garantisi Alanları</span></div>
+                </div>
+
+                <a href="https://wa.me/905360324038?text=Merhaba, Profesyonel Temizlik Hizmeti modeli sitenizi şirketim için kurdurmak istiyorum." class="cta-button" target="_blank">
+                    🚀 Bu Siteyi İşletmenize Kuralım
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Ana Model Kutusunu Aç/Kapat
+        function toggleModel(wrapperId) {
+            const wrapper = document.getElementById(wrapperId);
+            wrapper.classList.toggle('active');
+        }
+
+        // Bilgi Panelini Aç/Kapat
+        function toggleInfo(infoId) {
+            const infoBox = document.getElementById(infoId);
+            infoBox.classList.toggle('active');
+        }
+
+        // Karanlık mod kontrolü
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
