@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nasıl Çalışır & SSS | Genç Tasarım Studio</title>
+  <meta name="description" content="Web sitesi yaptırma süreci ve sıkça sorulan sorular. 3 adımda sitenizi hazırlayın, nakit elden ödeyin."/>
+  <link rel="icon" type="image/png" href="images/favicon-yeni.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="dark" oncontextmenu="return false;">
+
+<nav class="nav" role="navigation" aria-label="Ana menü">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Genç Tasarım Studio – Ana Sayfa">
+      <img src="images/logo.png" alt="Genç Tasarım Studio logo" width="32" height="32"/>
+      <div class="nav__logo-name">Genç Tasarım Studio<span>Web Çözümleri · İstanbul</span></div>
+    </a>
+    <div class="nav__sep" aria-hidden="true"></div>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="hizmetler.html">Hizmetler</a></li>
+      <li><a href="referanslar.html">Referanslar</a></li>
+      <li><a href="nasil-calisir.html" class="active">Nasıl Çalışır</a></li>
+    </ul>
+    <div class="nav__right">
+      <a href="https://wa.me/905360324038?text=Merhaba, web sitesi hakkında bilgi almak istiyorum." target="_blank" rel="noopener" class="btn btn--primary nav__cta-desktop">
+        İletişime Geç
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav__mobile" id="mobileMenu" role="menu">
+    <a href="index.html" role="menuitem">Ana Sayfa</a>
+    <a href="hizmetler.html" role="menuitem">Hizmetler</a>
+    <a href="referanslar.html" role="menuitem">Referanslar</a>
+    <a href="nasil-calisir.html" role="menuitem">Nasıl Çalışır</a>
+    <a href="https://wa.me/905360324038" target="_blank" rel="noopener" class="mob-cta" role="menuitem">💬 WhatsApp ile Yaz</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__inner reveal">
+      <div class="tag green">Süreç</div>
+      <h1 class="page-hero__title">Nasıl Çalışıyoruz?</h1>
+      <p class="page-hero__sub">Sıfır bürokratik süreç. WhatsApp üzerinden ilerleyin, nakit elden ödeyin.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SÜREÇ -->
+<section class="section section--white process" aria-labelledby="proc-title">
+  <div class="container">
+    <div class="proc-grid">
+      <div class="proc-card reveal d1">
+        <div class="proc-num">1</div>
+        <h3>Karar & İletişim</h3>
+        <p>WhatsApp üzerinden bize yazın. Sektörünüzü, tercihlerinizi ve içeriklerinizi paylaşın — 5 dakikada planı netleştirelim.</p>
+      </div>
+      <div class="proc-card reveal d2">
+        <div class="proc-num">2</div>
+        <h3>Hızlı Hazırlık</h3>
+        <p>Logo ve içeriklerinizi bize gönderin. Tasarımı hazırlayıp 72 saat içinde sizinle paylaşalım.</p>
+      </div>
+      <div class="proc-card reveal d3">
+        <div class="proc-num">3</div>
+        <h3>Onay & Ödeme</h3>
+        <p>Sitenizi birlikte inceleyin. Beğenirseniz ödemenizi nakit elden yapın — memnun kalmazsanız ücret yok.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SSS -->
+<section class="section section--gray" id="sss" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="tag">SSS</div>
+      <h2 class="sec-title" id="faq-title">Sıkça Sorulan Sorular</h2>
+    </div>
+    <div class="faq__list" role="list">
+
+      <div class="faq__item reveal" role="listitem">
+        <button class="faq__q" aria-expanded="false">
+          Yıllık ekstra bir ücret ödeyecek miyim?
+          <span class="faq__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a">
+          Tasarım için tek seferlik ödeme yaparsınız. Bunun dışında sadece alan adı (domain) için yılda küçük bir teknik altyapı bedeli ödenir — bu ücret doğrudan kayıt şirketine gider, bize değil.
+        </div>
+      </div>
+
+      <div class="faq__item reveal d1" role="listitem">
+        <button class="faq__q" aria-expanded="false">
+          Sitem Google'da çıkar mı?
+          <span class="faq__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a">
+          Evet. Tüm sitelerimizi Google Search Console'a kayıt ederek temel SEO ayarlarıyla teslim ediyoruz. Müşterileriniz adınızı veya hizmetinizi aradığında sizi bulabilir.
+        </div>
+      </div>
+
+      <div class="faq__item reveal d2" role="listitem">
+        <button class="faq__q" aria-expanded="false">
+          İçeriklerimi sonradan güncelleyebilir miyim?
+          <span class="faq__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a">
+          Kesinlikle. Fiyat, menü veya fotoğraf değişikliği için WhatsApp'tan yazmanız yeterli. Paketinize göre belirli süre içinde ücretsiz güncelleme yapıyoruz.
+        </div>
+      </div>
+
+      <div class="faq__item reveal d3" role="listitem">
+        <button class="faq__q" aria-expanded="false">
+          Banka kartı kullanmak istemiyorum, nasıl ödeyeceğim?
+          <span class="faq__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a">
+          Hiç dert etmeyin. İş bitiminde size geliyoruz ve ödemenizi dükkanınızda nakit elden yapıyorsunuz. Online ödeme zorunluluğu yok.
+        </div>
+      </div>
+
+      <div class="faq__item reveal d4" role="listitem">
+        <button class="faq__q" aria-expanded="false">
+          Beğenmezsem ne olur?
+          <span class="faq__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a">
+          Siteyi birlikte inceliyoruz ve sizden onay aldıktan sonra ödeme alıyoruz. Beğenmezseniz değişiklik yapıyoruz; yine de memnun kalmazsanız herhangi bir ücret ödemiyorsunuz.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" aria-labelledby="cta-title">
+  <div class="container cta-banner__inner">
+    <div class="reveal">
+      <h2 id="cta-title">Sitenizi Bugün Kuralım</h2>
+      <p>İstanbul genelinde yerel destek, elden teslim ve elden ödeme güvencesiyle profesyonel web sitesi.</p>
+      <div class="cta-banner__btns">
+        <a href="https://wa.me/905360324038?text=Merhaba, web sitesi yaptırmak istiyorum." target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+          WhatsApp ile Yaz
+        </a>
+        <a href="hizmetler.html#fiyatlar" class="btn btn--ghost btn--lg">Fiyatları Gör →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="ft__inner">
+    <div class="ft__top">
+      <div class="ft__brand">
+        <a href="index.html" class="nav__logo"><img src="images/logo.png" alt="" width="34" height="34"/><div class="nav__logo-name">Genç Tasarım Studio<span>Web Çözümleri · İstanbul</span></div></a>
+        <p class="ft__brand-text">Esnaf ve küçük işletmeler için modern, erişilebilir web çözümleri. İstanbul genelinde yerel destek, elden teslim.</p>
+      </div>
+      <div class="ft__col"><h5>Sayfalar</h5><ul><li><a href="hizmetler.html">Hizmetler & Fiyatlar</a></li><li><a href="referanslar.html">Referanslar</a></li><li><a href="nasil-calisir.html">Nasıl Çalışır</a></li><li><a href="nasil-calisir.html#sss">SSS</a></li></ul></div>
+      <div class="ft__col"><h5>İletişim</h5><ul><li><a href="https://wa.me/905360324038" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="tel:+905360324038">0536 032 40 38</a></li><li><a href="#">📍 İstanbul</a></li></ul></div>
+    </div>
+    <div class="ft__divider"></div>
+    <div class="ft__bottom">
+      <p class="ft__copy">© 2026 Genç Tasarım Studio. Tüm hakları saklıdır.</p>
+      <div class="ft__loc">📍 İstanbul · Yerel Destek &amp; Elden Teslim</div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="script.js"></script>
+</body>
+</html>
