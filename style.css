@@ -530,9 +530,6 @@ body.dark .nav.scrolled { box-shadow: 0 1px 24px rgba(0,0,0,0.5); }
 .why-card p {
   font-size: 14px; color: var(--text-3); line-height: 1.75;
 }
-@media (max-width: 768px) {
-  .why-grid { grid-template-columns: 1fr; }
-}
 
 /* ============================================================
    SERVICES
@@ -615,13 +612,18 @@ body.dark .nav.scrolled { box-shadow: 0 1px 24px rgba(0,0,0,0.5); }
 .pf-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
 }
+.pf-grid--centered {
+  grid-template-columns: repeat(2, minmax(0, 360px));
+  justify-content: center;
+  gap: 24px;
+}
 .pf-card {
   border-radius: var(--radius-lg); overflow: hidden;
   border: 1px solid var(--border);
-  transition: transform 0.25s, box-shadow 0.25s;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1), box-shadow 0.7s cubic-bezier(0.22,1,0.36,1), border-color 0.7s ease !important;
   background: var(--bg);
 }
-.pf-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.pf-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(99,102,241,0.25); }
 .pf-img {
   width: 100%; aspect-ratio: 16/10;
   background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
@@ -629,8 +631,7 @@ body.dark .nav.scrolled { box-shadow: 0 1px 24px rgba(0,0,0,0.5); }
   font-size: 48px; overflow: hidden; position: relative;
 }
 body.dark .pf-img { background: linear-gradient(135deg, #1e1b4b, #312e81); }
-.pf-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.pf-card:hover .pf-img img { transform: scale(1.05); }
+.pf-img img { width: 100%; height: 100%; object-fit: cover; }
 .pf-body { padding: 20px 22px 22px; }
 .pf-tag {
   font-size: 10px; font-weight: 700; text-transform: uppercase;
@@ -641,11 +642,16 @@ body.dark .pf-img { background: linear-gradient(135deg, #1e1b4b, #312e81); }
   margin-bottom: 12px; letter-spacing: -0.01em;
 }
 .pf-action {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; font-weight: 600; color: var(--text-3);
-  text-decoration: none; transition: color 0.2s, gap 0.2s;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--indigo);
+  text-decoration: none; transition: background 0.2s, gap 0.2s, color 0.2s;
+  margin-top: 6px;
+  padding: 7px 14px;
+  border: 1.5px solid var(--indigo);
+  border-radius: 8px;
 }
-.pf-card:hover .pf-action { color: var(--indigo); gap: 9px; }
+.pf-action:hover { background: var(--indigo); color: #fff; gap: 10px; }
+.pf-card:hover .pf-action { gap: 10px; }
 
 /* ============================================================
    PRICING
@@ -803,7 +809,7 @@ footer {
 body.dark footer { background: #0a0f1a; }
 .ft__inner { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 .ft__top {
-  display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 48px;
+  display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 48px;
   margin-bottom: 48px;
 }
 .ft__brand .nav__logo-name { color: #f1f5f9; font-size: 15px; }
@@ -906,6 +912,8 @@ body.dark .wa-fab { box-shadow: 0 6px 24px rgba(37,211,102,0.25); }
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+
+/* ---- Tablet (≤1024px) ---- */
 @media (max-width: 1024px) {
   .hero__inner { grid-template-columns: 1fr; gap: 48px; }
   .hero__visual { order: -1; }
@@ -914,27 +922,81 @@ body.dark .wa-fab { box-shadow: 0 6px 24px rgba(37,211,102,0.25); }
   .pricing__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; gap: 16px; }
   .price-card--featured { transform: none; }
   .price-card--featured:hover { transform: translateY(-5px); }
+  /* Tablet grid: 2 sütun */
+  .services .svc-grid  { grid-template-columns: repeat(2, 1fr); }
+  .why-grid            { grid-template-columns: repeat(2, 1fr); }
+  .pf-grid             { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ---- Mobile (≤768px) ---- */
 @media (max-width: 768px) {
   .nav__links, .nav__status, .nav__cta-desktop { display: none; }
   .nav__hamburger { display: flex; }
-  .hero { padding-top: calc(var(--nav-h) + 48px); padding-bottom: 56px; }
-  .hero__title { font-size: 32px; }
-  .statsbar__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .stat__item:nth-child(2) { border-right: none; }
-  .stat__item:nth-child(3), .stat__item:nth-child(4) { border-top: 1px solid var(--border); padding-top: 24px; }
-  .services .svc-grid { grid-template-columns: 1fr; }
-  .why-grid { grid-template-columns: 1fr; }
-  .process .proc-grid { grid-template-columns: 1fr; }
-  .process .proc-grid::before { display: none; }
-  .pf-grid { grid-template-columns: 1fr; }
+
+  /* Hero */
+  .hero { padding-top: calc(var(--nav-h) + 40px); padding-bottom: 48px; }
+  .hero__title { font-size: 30px; }
+  .hero__sub { font-size: 15px; }
   .hero__float { display: none; }
+  .hero__card { max-width: 100%; }
+
+  /* Page hero (iç sayfalar) */
+  .page-hero { padding-top: calc(var(--nav-h) + 36px); padding-bottom: 44px; }
+  .page-hero__title { font-size: 28px; }
+  .page-hero__sub { font-size: 14px; }
+
+  /* Stats */
+  .statsbar__grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .stat__num { font-size: 30px; }
+  .stat__item:nth-child(2) { border-right: none; }
+  .stat__item:nth-child(3), .stat__item:nth-child(4) {
+    border-top: 1px solid var(--border); padding-top: 24px; margin-top: 16px;
+  }
+
+  /* Grids → 1 sütun */
+  .services .svc-grid  { grid-template-columns: 1fr; }
+  .why-grid            { grid-template-columns: 1fr; }
+  .process .proc-grid  { grid-template-columns: 1fr; }
+  .process .proc-grid::before { display: none; }
+  .pf-grid             { grid-template-columns: 1fr !important; } /* inline style override */
+
+  /* Section & header */
+  .section     { padding: 64px 0; }
+  .sec-header  { margin-bottom: 40px; }
+  .sec-title   { font-size: 26px; }
+
+  /* WA fab */
   .wa-fab { padding: 0; width: 52px; height: 52px; border-radius: 50%; justify-content: center; }
   .wa-fab .wa-fab__text { display: none; }
-  .section { padding: 72px 0; }
+
+  /* Footer */
   .ft__top { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* ---- Küçük mobil (≤480px) ---- */
 @media (max-width: 480px) {
+  .container { padding: 0 16px; }
+
+  /* Butonlar */
   .hero__actions, .cta-banner__btns { flex-direction: column; align-items: stretch; }
   .hero__actions .btn, .cta-banner__btns .btn { justify-content: center; }
+
+  /* Section */
+  .section { padding: 52px 0; }
+  .sec-header { margin-bottom: 32px; }
+
+  /* Kart padding'leri */
+  .svc-card  { padding: 24px 20px; }
+  .proc-card { padding: 28px 20px; }
+  .why-card  { padding: 22px 20px; }
+  .pf-body   { padding: 16px 16px 18px; }
+  .price-card { padding: 28px 22px; }
+
+  /* Pills */
+  .hero__pills { gap: 6px; }
+  .hero__pill  { font-size: 11px; padding: 5px 10px; }
+
+  /* Stats */
+  .stat__num { font-size: 26px; }
+  .statsbar { padding: 28px 0; }
 }
